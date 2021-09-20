@@ -15,10 +15,15 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+
+    <!-- Application State -->
+    <script>
+        window.appState = @json($state)
+    </script>
 </head>
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100" id="app" v-cloak>
-        @include('layouts.navigation')
+        <app-navigation></app-navigation>
 
         <!-- Page Content -->
         <main>
