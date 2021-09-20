@@ -53,6 +53,15 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+        'lasso' => [
+            'driver' => 's3',
+            'key' => env('DO_LASSO_SPACE_KEY'),
+            'secret' => env('DO_LASSO_SPACE_SECRET'),
+            'region' => 'ams3',
+            'bucket' => 'codepotato-lasso-assets',
+            'endpoint' => 'https://ams3.digitaloceanspaces.com',
+        ],
+
     ],
 
     /*
