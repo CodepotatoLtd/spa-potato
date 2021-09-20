@@ -18,6 +18,6 @@ login and registration behaviour.
 
 1. Create a new repository and select "spa-potato" as a repository template
 2. Clone the new repository you have just made to your local system
-3. Run `composer install`, `cp .env.example .env`, `npm install` and `npm run dev`
+3. Run `composer install`, `cp .env.example .env`, `php artisan key:generate`, `npm install` and `npm run dev`
 4. Next, create a database for the app and run `php artisan migrate`.
 5. This repository also uses Lasso, so search 1Password for "Lasso DO Bucket" and copy the API keys.
