@@ -1,36 +1,54 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+@section('body')
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <a href="{{ route('dashboard') }}">
+            <x-logo class="w-auto h-24 mx-auto text-indigo-600" />
+        </a>
+
+        <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
+            Confirm your password
+        </h2>
+        <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
+            Please confirm your password before continuing
+        </p>
+    </div>
+
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+            <form method="POST" action="{{ route('password.confirm') }}">
+                @csrf
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
+                        Password
+                    </label>
+
+                    <div class="mt-1 rounded-md shadow-sm">
+                        <input id="password" name="password" type="password" required autofocus class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                    </div>
+
+                    @error('password')
+                    <p class="mt-2 text-sm text-red-600" id="password-error">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="flex items-center justify-end mt-6">
+                    <div class="text-sm leading-5">
+                        <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                            Forgot your password?
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <span class="block w-full rounded-md shadow-sm">
+                        <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                            Confirm password
+                        </button>
+                    </span>
+                </div>
+            </form>
         </div>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.confirm') }}">
-            @csrf
-
-            <!-- Password -->
-            <div>
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+@endsection
