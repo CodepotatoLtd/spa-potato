@@ -103,7 +103,8 @@ export default {
     },
 
     computed: {
-        ...mapState(['user', 'csrfToken']),
+        ...mapState(['user']),
+        ...mapState('session', ['csrfToken']),
 
         currentRouteName() {
             return this.$route.name;
