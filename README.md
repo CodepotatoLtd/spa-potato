@@ -8,11 +8,12 @@ login and registration behaviour.
 
 ### Features of this repository
 - Authentication system built
-- SPA-ready, with routes and Vue 2.0 installed (Vue 3 coming soon)
+- SPA-ready, with routes and Vue 2.0 installed
 - Vuex pre-installed
 - Inter font setup as the default font
 - TailwindCSS with purging
-- User and CSRF Token in the state for easy access
+- User in the state for easy access
+- "Session" Vuex module that stores the CSRF Token and "flash" data for easy access.
 
 ### How to set up
 
