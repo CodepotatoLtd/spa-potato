@@ -26,9 +26,13 @@ let app = new Vue({
     store,
     el: '#app',
     created() {
-        this.$store.dispatch('getCsrfToken');
+        this.$store.dispatch('session/captureCsrfToken');
 
         const appState = window.appState;
+
+        if (appState.sessionFlashData) {
+            this.$store.dispatch('session/setSessionFlashData', appState.sessionFlashData);
+        }
 
         if (appState.user) {
             this.$store.dispatch('setUser', appState.user);

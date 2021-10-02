@@ -3,29 +3,24 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+import session from './modules/session';
+
 export default new Vuex.Store({
+    modules: {
+        session
+    },
+
     state: {
-        csrfToken: null,
         user: null,
     },
 
     actions: {
-        getCsrfToken({ commit }) {
-            let token = document.head.querySelector('meta[name="csrf-token"]');
-
-            if (token && token.content) {
-                commit('SET_CSRF_TOKEN', token.content);
-            }
-        },
         setUser({ commit }, user) {
             commit('SET_USER', user);
         },
     },
 
     mutations: {
-        SET_CSRF_TOKEN(state, token) {
-            state.csrfToken = token;
-        },
         SET_USER(state, user) {
             state.user = user;
         },

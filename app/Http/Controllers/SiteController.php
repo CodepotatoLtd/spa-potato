@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\StateHelper;
 use App\Http\Resources\UserStateResource;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,9 @@ class SiteController extends Controller
      */
     public function showSite()
     {
-        $state = [];
+        // Build up any state that should be passed down to the SPA.
 
-        if (auth()->check()) {
-            $state['user'] = new UserStateResource(auth()->user());
-        }
+        $state = (new StateHelper)->getAppState();
 
         return view('dashboard', ['state' => $state]);
     }
