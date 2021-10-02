@@ -1,5 +1,4 @@
 # SPA Template Repository
-## "SPA Potato"
 
 This repository has been created to save us time when we have a new client project. This comes pre-installed with
 the latest version of Laravel and Vue. It has been pre-configured to run as an SPA and has a full authentication system 
