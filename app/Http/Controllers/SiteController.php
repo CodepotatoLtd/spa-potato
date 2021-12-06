@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\StateHelper;
-use App\Http\Resources\UserStateResource;
-use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {

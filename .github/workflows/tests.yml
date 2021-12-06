@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  laravel-tests:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_DATABASE: testing
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: github
+          MYSQL_PASSWORD: codepotato
+          MYSQL_ROOT_PASSWORD: codepotato
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.0'
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Generate key
+        run: php artisan key:generate --env=testing-github
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+      - name: Execute tests via PEST
+        run: php artisan test --env=testing-github --configuration=phpunit-github.xml

@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <a href="{{ route('app') }}">
+        <a href="{{ route('dashboard') }}">
             <x-logo class="w-auto h-24 mx-auto text-indigo-600" />
         </a>
 
@@ -37,9 +37,14 @@
             <div class="text-sm text-gray-700">
                 <p>Before proceeding, please check your email for a verification link.</p>
 
-                <p class="mt-3">
-                    If you did not receive the email, <a wire:click="resend" class="text-indigo-700 cursor-pointer hover:text-indigo-600 focus:outline-none focus:underline transition ease-in-out duration-150">click here to request another</a>.
-                </p>
+                <form method="POST" action="{{ route('verification.send') }}">
+                    @csrf
+
+                    <p class="mt-3">
+                        If you did not receive the email, <button class="text-indigo-700 cursor-pointer hover:text-indigo-600 focus:outline-none focus:underline transition ease-in-out duration-150">click here to request another</button>.
+                    </p>
+                </form>
+
             </div>
         </div>
     </div>
