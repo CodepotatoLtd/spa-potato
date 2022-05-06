@@ -19,3 +19,4 @@ public/css/*
 public/js/*
 .lasso
 .DS_Store
+.php-cs-fixer.cache
