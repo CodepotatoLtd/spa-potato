@@ -11,13 +11,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {mapState} from 'vuex';
 
 export default {
     name: 'Home',
 
     computed: {
         ...mapState(['user']),
+    },
+
+    created() {
+        axios.get('/api/user')
+            .then((rsp) => {
+                console.log(rsp);
+            });
     }
 }
 </script>
